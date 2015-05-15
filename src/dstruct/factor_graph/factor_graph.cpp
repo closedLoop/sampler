@@ -79,6 +79,7 @@ void dd::FactorGraph::update_weight(const Variable & variable){
     // boolean variable
     if (variable.domain_type == DTYPE_BOOLEAN) {
       // only update weight when it is not fixed
+      if (fs[i].dd_count > 0)
       if(infrs->weights_isfixed[ws[i]] == false){
         // stochastic gradient ascent 
         // increment weight with stepsize * gradient of weight
@@ -132,21 +133,21 @@ void dd::FactorGraph::load(const CmdParser & cmd, const bool is_quiet){
     std::cout << "         N_QUERY: #" << n_query << std::endl;
     std::cout << "         N_EVID : #" << n_evid << std::endl;  
   }
-
+  n_var = c_nvar;
   // load factors
   n_loaded = read_factors(filename_factors, *this);
   assert(n_loaded == n_factor);
   if (!is_quiet) {
     std::cout << "LOADED FACTORS: #" << n_loaded << std::endl;
   }
-
+  n_factor = c_nfactor;
   // load weights
   n_loaded = read_weights(filename_weights, *this);
   assert(n_loaded == n_weight);
   if (!is_quiet) {
     std::cout << "LOADED WEIGHTS: #" << n_loaded << std::endl;
   }
-
+  n_weight = c_nweight;
   // sort the above components
   // NOTE This is very important, as read_edges assume variables,
   // factors and weights are ordered so that their id is the index 

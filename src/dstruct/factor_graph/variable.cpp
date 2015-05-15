@@ -7,7 +7,7 @@ namespace dd{
     Variable::Variable(const long & _id, const int & _domain_type, 
              const bool & _is_evid, const VariableValue & _lower_bound,
              const VariableValue & _upper_bound, const VariableValue & _init_value, 
-             const VariableValue & _current_value, const int & _n_factors){
+             const VariableValue & _current_value, const int & _n_factors, const long & dd_count){
 
       this->id = _id;
       this->domain_type = _domain_type;
@@ -18,6 +18,7 @@ namespace dd{
       this->assignment_free = _current_value;
 
       this->n_factors = _n_factors;
+      this->dd_count = dd_count;
     }
 
     bool VariableInFactor::satisfiedUsing(int value) const{
@@ -32,30 +33,33 @@ namespace dd{
     VariableInFactor::VariableInFactor(int dummy,
                       const int & _dimension, 
                       const long & _vid, const int & _n_position, 
-                     const bool & _is_positive){
+                     const bool & _is_positive, const long & _dd_count){
       this->dimension = _dimension;
       this->vid = _vid;
       this->n_position = _n_position;
       this->is_positive = _is_positive;
       this->equal_to = 1.0;
+      this->dd_count = _dd_count;
     }
 
 
     VariableInFactor::VariableInFactor(const long & _vid, const int & _n_position, 
-                     const bool & _is_positive){
+                     const bool & _is_positive, const long & _dd_count){
       this->dimension = -1;
       this->vid = _vid;
       this->n_position = _n_position;
       this->is_positive = _is_positive;
       this->equal_to = 1.0;
+      this->dd_count = _dd_count;
     }
 
     VariableInFactor::VariableInFactor(const long & _vid, const int & _n_position, 
-                     const bool & _is_positive, const VariableValue & _equal_to){
+                     const bool & _is_positive, const VariableValue & _equal_to, const long & _dd_count){
       this->dimension = -1;
       this->vid = _vid;
       this->n_position = _n_position;
       this->is_positive = _is_positive;
       this->equal_to = _equal_to;
+      this->dd_count = _dd_count;
     }
 }

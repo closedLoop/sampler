@@ -42,6 +42,7 @@ namespace dd{
     
     Variable & variable = p_fg->variables[vid];
 
+    if (variable.dd_count <= 0) return;
     // if (variable.is_evid == false) return;
 
     if(variable.domain_type == DTYPE_BOOLEAN){ // boolean
@@ -143,6 +144,9 @@ namespace dd{
     // this function uses the same sampling technique as in sample_sgd_single_variable
 
     Variable & variable = this->p_fg->variables[vid];
+
+    if (variable.dd_count <= 0) return;
+
 
     if(variable.domain_type == DTYPE_BOOLEAN){
 

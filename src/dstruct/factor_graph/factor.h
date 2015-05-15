@@ -40,6 +40,7 @@ namespace dd{
     int n_variables;      // number of variables in the factor
     long n_start_i_vif;   // the id of the first variable.  the variables of a factor
                           // have sequential ids starting from n_start_i_vif to n_start_i_vif+num_variables-1
+    long dd_count;
 
     /**
      * Default constructor
@@ -185,6 +186,7 @@ namespace dd{
     int n_variables;        // number of variables
 
     long n_start_i_vif;     // start variable id
+    long dd_count;
 
     std::vector<VariableInFactor> tmp_variables; // variables in the factor
 
@@ -196,7 +198,8 @@ namespace dd{
     Factor(const FactorIndex & _id,
            const WeightIndex & _weight_id,
            const int & _func_id,
-           const int & _n_variables);
+           const int & _n_variables,
+           const long & dd_count = 1);
 
   };
 

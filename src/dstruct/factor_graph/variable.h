@@ -38,6 +38,8 @@ namespace dd{
     // n_start_i_tally is the start position for the variable values in the array
     long n_start_i_tally;
 
+    long dd_count;
+
     std::vector<long> tmp_factor_ids; // factor ids the variable connects to
 
     Variable();
@@ -49,7 +51,7 @@ namespace dd{
     Variable(const long & _id, const int & _domain_type, 
              const bool & _is_evid, const VariableValue & _lower_bound,
              const VariableValue & _upper_bound, const VariableValue & _init_value, 
-             const VariableValue & _current_value, const int & _n_factors);
+             const VariableValue & _current_value, const int & _n_factors, const long & _dd_count = 1);
   };
 
   /**
@@ -64,7 +66,7 @@ namespace dd{
     VariableValue equal_to; 
 
     int dimension;
-
+    long dd_count;
     /**
      * Returns whether the variable's predicate is satisfied using the given value
      */
@@ -75,14 +77,14 @@ namespace dd{
     VariableInFactor(int dummy,
                       const int & _dimension, 
                       const long & _vid, const int & _n_position, 
-                     const bool & _is_positive);
+                     const bool & _is_positive, const long & _dd_count = 1);
 
 
     VariableInFactor(const long & _vid, const int & _n_position, 
-                     const bool & _is_positive);
+                     const bool & _is_positive, const long & _dd_count = 1);
 
     VariableInFactor(const long & _vid, const int & _n_position, 
-                     const bool & _is_positive, const VariableValue & _equal_to);
+                     const bool & _is_positive, const VariableValue & _equal_to, const long & _dd_count = 1);
   };
 }
 
