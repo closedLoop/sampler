@@ -17,5 +17,11 @@ RUN ["/bin/bash", "-c", "make dep"]
 RUN ["/bin/bash", "-c", "make"]
 RUN ["/bin/bash", "-c", "make test"]
 
-RUN mkdir -p /data/sampler
-VOLUME ["/data/sampler/"]
+RUN mkdir -p /data/graph
+RUN mkdir -p /data/out
+VOLUME ["/data/graph/"]
+VOLUME ["/data/out/"]
+
+ENTRYPOINT ["./dw", "gibbs", "-w /data/graph/graph.weights", "-v /data/graph/graph.variables", "-f /data/graph/graph.factors", "-e /data/graph/graph.edges", "-m /data/graph/graph.meta", "-o /data/out"]
+CMD ["-l 1000", "-d 0.99", "-s 1", "-i 500", "--alpha 0.01"]
+
