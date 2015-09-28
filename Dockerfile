@@ -23,5 +23,5 @@ VOLUME ["/data/graph/"]
 VOLUME ["/data/out/"]
 
 ENTRYPOINT ["./dw", "gibbs", "-w /data/graph/graph.weights", "-v /data/graph/graph.variables", "-f /data/graph/graph.factors", "-e /data/graph/graph.edges", "-m /data/graph/graph.meta", "-o /data/out"]
-CMD ["-l 1000", "-d 0.99", "-s 1", "-i 500", "--alpha 0.01"]
+CMD ["-i 500",  "-s 1", "-l 1000"]
 
