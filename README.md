@@ -43,6 +43,34 @@ You can then compile using
 
     CXX=/opt/local/bin/clang++ make
 
+## Docker Installation
+**Build**
+```bash
+docker build -t sampler .
+```
+**Pull from Docker Hub**
+```bash
+docker pull closedloop/sampler
+```
+
+**Simple Run**
+```bash
+docker run -it -v $GRAPH_FOLDER:/data/graph -v $OUTPUT_FOLDER:/data/out closedloop/sampler
+```
+where
+* `$GRAPH_FOLDER` is the location of the `graph.weights, graph.variables, graph.factors, graph.edges graph.meta` files
+* `$OUTPUT_FOLDER` is the folder location for the generated `inference_result.out.text` and `inference_result.out.weights.text` files
+
+The basic usage example above calls the following function:
+```bash
+./dw gibbs -w /data/graph/graph.weights -v /data/graph/graph.variables -f /data/graph/graph.factors -e /data/graph/graph.edges -m /data/graph/graph.meta -o /data/out -i 500 -s 1 -l 1000
+```
+
+**Run with custom parameters**
+```bash
+docker run -it -v $GRAPH_FOLDER:/data/graph -v $OUTPUT_FOLDER:/data/out closedloop/sampler -i 1000 -s 1 -l 1000 --alpha 0.01
+```
+
 # Reference
 
 [C. Zhang and C. Ré. DimmWitted: A study of main-memory statistical analytics. PVLDB, 2014.](http://www.vldb.org/pvldb/vol7/p1283-zhang.pdf)
